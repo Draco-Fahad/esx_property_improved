@@ -294,6 +294,7 @@ AddEventHandler('esx_property:getItem', function(owner, type, item, count)
       if roomAccountMoney >= count then
         account.removeMoney(count)
         xPlayer.addAccountMoney(item, count)
+		dclog(xPlayer, '**Person Removed** X'..count..'** **'..item..' **From The Apartment**')
       else
         TriggerClientEvent('esx:showNotification', _source, _U('amount_invalid'))
       end
@@ -375,6 +376,7 @@ AddEventHandler('esx_property:putItem', function(owner, type, item, count)
 
       TriggerEvent('esx_addonaccount:getAccount', 'property_' .. item, xPlayerOwner.identifier, function(account)
         account.addMoney(count)
+		dclog(xPlayer, '**Person Deposited** X'..count..'** **'..item..' **In The Apartment**')
       end)
 
     else
